@@ -80,4 +80,10 @@ Output: A nested dictionary ("Params") containing the growth parameters for all 
 <img width="1920" height="1080" alt="Strain 1" src="https://github.com/user-attachments/assets/47087084-ec24-480b-b98b-23ea1c79eb94" />
 
 
-Where 
+Where Parameters, strains, dilutions and replicates can have various, tests, strasins, dilutions and replicates nested dictionaries respectively.
+
+### plate_analysis.plot_params(params, plate, save_paths, Max_OD_to_plot, Maxg_to_plot):
+
+Input: A "Params" dictionary, a "plate with data" dictionary, a "save directories" dictionary, a float representing the maximum OD which is considered for plotting and a float representing the maximum growth rate considered for plotting
+
+Output: Three plots per test per strain displaying information for each of the growth parameters studied, 
