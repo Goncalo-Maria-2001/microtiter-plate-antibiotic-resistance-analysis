@@ -41,7 +41,8 @@ Output: nested dictionary of paths ("save directories") where the plots and exce
 
 Creates the directories where the output plots and workbooks will be stored
 
-<img width="1920" height="1080" alt="Dictionary (2)" src="https://github.com/user-attachments/assets/54bffaa3-43f4-4f98-93f7-e0623f9cdf36" />
+<img width="1920" height="1080" alt="Dictionary" src="https://github.com/user-attachments/assets/4838b85d-87c4-4ca1-a158-8ab43cbaadd6" />
+
 
 
 ### plate_analysis.has_fittable_growth(df,min_OD_change):
@@ -86,4 +87,20 @@ Where Parameters, strains, dilutions and replicates can have various, tests, str
 
 Input: A "Params" dictionary, a "plate with data" dictionary, a "save directories" dictionary, a float representing the maximum OD which is considered for plotting and a float representing the maximum growth rate considered for plotting
 
-Output: Three plots per test per strain displaying information for each of the growth parameters studied, 
+Output: Three plots per test per strain displaying information for each of the growth parameters studied
+
+Each plot will be stored in its 'test/strain' directory
+
+### plate_analysis.save_params(params, plate, save_paths):
+
+Input: A "Params" dictionary, a "plate with data" dictionary, a "save directories" dictionary4
+
+Output: For each test and strain pair an Excel workbook is generated containing information about each parameter's values
+
+Each workbook will be stored in its 'test/strain' directory
+
+### plate_analysis.save_growth_curves(plate, params, save_paths):
+
+Input:  A "Params" dictionary, a "plate with data" dictionary, a "save directories" dictionary4
+
+For each test strain and dilution combination, the data in the "plate with data" is plotted and saved as an imgae in each 'test/strain' directory, the plots also contain information on which model was used to obtain the parameters in the get_params functions.
