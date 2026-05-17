@@ -1,6 +1,16 @@
-# Microtiter_plate_Antibiotic_Resistance_Analysis (Incomplete)
+# Microtiter_plate_Antibiotic_Resistance_Analysis
 
 Files used to obtain growth curve plots and growth parameter data in antibiotic resistance broth dilution assays done on 96-well plate, subjecting various strains to serial dillutions of various different antibiotics
+
+## Overview 
+
+The files take raw Tecan .csv output data and produce:
+
+- A growth curve for each testing well containing essential model fit data,
+- An average growth curve for each set of control wells for a given control,
+- Estimated growth parameters for each testing well (Lag phase duration, Maximum growth rate, Maximum population size),
+- Comparative growth parameter plots for each strain-antibiotic pair,
+- Excel workbook containing the valuues of all parameters for each well.
 
 ## Getting started
 
