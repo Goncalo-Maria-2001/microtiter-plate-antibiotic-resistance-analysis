@@ -1,6 +1,6 @@
 # Microtiter_plate_Antibiotic_Resistance_Analysis
 
-Python program used to obtain growth curve plots and growth parameter data in antibiotic resistance broth dilution assays done on a 96-well plate, subjecting various strains to serial dillutions of various different antibiotics. The program was developed to help gauge the MIC-100% of certain strains of bacterium with the clear goal of finding a good candidate for a differential antibiotic targeting pathogenic strains of a given bacteria without harming the commensal ones.
+Python program used to obtain growth curve plots and growth parameter data in antibiotic resistance broth dilution assays done on a 96-well plate, subjecting various strains to serial dillutions of various antibiotics. The program was developed to help gauge the MIC-100% of certain strains of bacterium with the clear goal of finding a good candidate for a differential antibiotic targeting pathogenic strains of a given bacteria without harming the commensal ones.
 
 ## Overview 
 
