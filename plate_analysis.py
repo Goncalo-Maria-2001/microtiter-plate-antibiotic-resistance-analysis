@@ -1,4 +1,3 @@
-from logging import exception
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -6,6 +5,9 @@ from collections import defaultdict
 import json
 import curveball.models as cb
 import os
+import argparse
+
+
 
 def recursive_dict():
     return defaultdict(recursive_dict)
@@ -138,7 +140,7 @@ def get_control_avg(plate,test,strain):
         mega_list.append(plate[test]['strains'][strain]['control+']['data'][i])
     return np.mean(mega_list, axis=0)
 
-def save_growth_curves(plate, params, save_paths):
+def save_growth_curves(params, plate, save_paths):
     for test in plate:
         if not test == 'control-':
             n_cycles = plate[test]['n_cycles']
@@ -151,7 +153,7 @@ def save_growth_curves(plate, params, save_paths):
                 c_pos = get_control_avg(plate,test,strain)
                 for i in range(n_dilutions):
                     plt.figure()
-                    plt.title(f'{strain} subject to {plate[test]["antibiotic_concs"][i]} µg/mL of {plate[test]["antibiotic"]}')
+                    plt.title(f'{strain} subject to {plate[test]["antibiotic_concs"][i]} �g/mL of {plate[test]["antibiotic"]}')
                     plt.xlabel('Cycles')
                     plt.ylabel('OD')
                     plt.plot(x, c_pos, color='green', linestyle='--', label='controlo +')
@@ -164,7 +166,7 @@ def save_growth_curves(plate, params, save_paths):
                         j += 1
                     plt.legend(loc= 9, bbox_to_anchor=(0.5, -0.2))
                     plt.tight_layout()
-                    plt.savefig(os.path.join(save_paths[test][strain], f'{strain} concentração {plate[test]["antibiotic_concs"][i]} de {plate[test]["antibiotic"]}.png'))
+                    plt.savefig(os.path.join(save_paths[test][strain], f'{strain} concentra��o {plate[test]["antibiotic_concs"][i]} de {plate[test]["antibiotic"]}.png'))
                     plt.close('all')
         else:
             for control in plate[test]:
@@ -374,21 +376,39 @@ def save_params(params, plate, save_paths):
 
     print('parameter values saved')
                 
-    
-    
-min_OD_change = 0.4 ## minimum OD net change for which bacterial growth is considered to have occured
-Max_OD_to_plot = 2.5 ## Maximum 'reasonable' OD to display in plot_params
-Maxg_to_plot = 0.5 ## Maximum 'reasonable Maximum Growth rate to display in plot_params
-slope_threshold = 0.01 ## involved in lag_phase_finder function, a minimum slope of 0.01 must be detected for a series of consecutive cycles for the lag phase to be considered over
-min_bic = -350 ## Minimum BIC for which the model is considered to have fit well enough
-path = r'C:\Users\gomam\Estágio ITQB\Growth curve MIC PA 11k 13k/final' ## path to folder with plate_setup and plate_data files
-path_to_plate_txt = os.path.join(path, 'plate_setups/plate_setup_LA_todas_as_estirpes.txt')
-path_to_plate_data = os.path.join(path, 'plate_data/plate_data_LA_todas_as_estirpes.csv')
+def main(args):
+    plate_setup = get_plate_setup(args.setup)
+    plate = add_plate_data(plate_setup, args.data)
+    save_paths = create_save_dirs(plate, args.out)
+    params = get_params_plate(plate, args.min_bic, args.min_od_change, args.slope_threshold)
+    save_growth_curves(params, plate, save_paths)
+    plot_params(params, plate, save_paths, args.max_od_to_plot, args.maxg_to_plot)
+    save_params(params, plate, save_paths)
+    print(f'Analysis complete, results saved to: {args.out}')
 
-plate_setup = get_plate_setup(path_to_plate_txt)
-plate = add_plate_data(plate_setup, path_to_plate_data)
-save_paths = create_save_dirs(plate, path)
-params = get_params_plate(plate, min_bic, min_OD_change, slope_threshold)
-save_growth_curves(plate, params, save_paths)
-plot_params(params, plate, save_paths, Max_OD_to_plot, Maxg_to_plot)
-save_params(params, plate, save_paths)
+def parse_args():
+    parser = argparse.ArgumentParser( description=('Generates growth curve plots and inferred growth parameters in broth microdilution assays done on a 96-well plate. '
+                                                   'Produces growth parameter plots and records values in an excel workbook. '
+                                                   'Input Tecan data converted to .csv format. '),  formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+
+    parser.add_argument('-s','--setup', required=True, help='Path to plate setup file')
+
+    parser.add_argument('-d','--data', required=True, help='Path to plate data file')
+
+    parser.add_argument('-o','--out', type= str, required=True, help='Output directory where results/ will be created')
+
+    parser.add_argument('--min-od-change', default= 0.4, type=float, help='minimum OD net change for which bacterial growth is considered to have occured')
+
+    parser.add_argument('--max-od-to-plot', type=float, default=2.5, help='Maximum \'reasonable\' OD to display in plot_params')
+
+    parser.add_argument('--maxg-to-plot', type=float, default=0.5, help='Maximum \'reasonable\' Maximum Growth rate to display in plot_params')
+
+    parser.add_argument('--slope-threshold', type=float, default=0.01, help='involved in lag_phase_finder function, a minimum slope of 0.01 must be detected for a series of consecutive cycles for the lag phase to be considered over')
+
+    parser.add_argument('--min-bic', type=float, default=-350, help= 'Minimum BIC for which the model is considered to have fit well enough')
+
+    return parser.parse_args()
+
+if __name__ == "__main__":
+    args = parse_args()
+    main(args)
