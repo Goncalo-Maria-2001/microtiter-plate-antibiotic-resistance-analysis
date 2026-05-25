@@ -1,6 +1,6 @@
-# Microtiter_plate_Antibiotic_Resistance_Analysis
+# microtiter-plate-antibiotic-resistance-analysis
 
-Python program used to obtain growth curve plots and growth parameter data in antibiotic resistance broth dilution assays done on a 96-well plate, subjecting various strains to serial dilutions of various antibiotics. The program was developed to help gauge the MIC-100% of certain strains of bacterium with the clear goal of finding a good candidate for a differential antibiotic targeting pathogenic strains of a given bacteria without harming the commensal ones.
+Python program developed with the goal of finding a good candidate for a differential antibiotic targeting pathogenic strains of a given bacterium without harming commensal ones. The program generates growth curve plots and inferred growth parameters in broth microdilution assays done on a 96-well plate, subjecting various strains to serial dilutions of various antibiotics. This helped gauging the MIC-100% of certain strains of bacterium for different antibiotics. 
 
 ## Overview 
 
@@ -10,7 +10,7 @@ The files take raw Tecan .csv output data and produce:
 - An average growth curve for each set of control wells for a given control,
 - Estimated growth parameters for each testing well (Lag phase duration, Maximum growth rate, Maximum population size),
 - Comparative growth parameter plots for each strain-antibiotic pair,
-- Excel workbook containing the valuues of all parameters for each well.
+- Excel workbook containing the values of all parameters for each well.
 
 ## Getting started
 
