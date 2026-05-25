@@ -34,7 +34,7 @@ pip install -r requirements.txt
 Check that everything is running smoothly with this example run:
 
 ```bash
-python plate_.py --setup examples/example_plate_setup_1.txt --data examples/example_plate_data_1.csv --out example_run
+python plate_analysis.py --setup examples/example_plate_setup_1.txt --data examples/example_plate_data_1.csv --out example_run
 ```
 
 A folder named 'example-run' should now exist in the working directory containing the results.
