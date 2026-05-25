@@ -14,7 +14,36 @@ The files take raw Tecan .csv output data and produce:
 
 ## Getting started
 
-Download plate_analysis.py (main file) and fill in your experiment data with the template provided in Example_plate_setup.txt (explained more carefully below), update the file paths and other parameters in the main file and run. The output will be a folder containing the growth curve plots for control and testing wells, growth parameter plots descriminated by strain and test and an excel workbook containing all the values obtained for the parameters.
+### 1. Clone the github repos:
+
+```bash
+git clone https://github.com/Goncalo-Maria-2001/microtiter-plate-antibiotic-resistance-analysis.git
+cd microtiter-plate-antibiotic-resistance-analysis
+```
+
+### 2. Install dependencies:
+
+Consider using a virtual environment using conda or venv to run the program and install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Verify instalation:
+
+Check that everything is running smoothly with this example run:
+
+```bash
+python plate_.py --setup examples/example_plate_setup_1.txt --data examples/example_plate_data_1.csv --out example_run
+```
+
+A folder named 'example-run' should now exist in the working directory containing the results.
+
+To see all available options check
+
+```bash
+python plate_analysis.py -h
+```
 
 ## Example Output:
 
