@@ -68,32 +68,32 @@ Each test block is further divided into an intro section and the strain sections
 The structure of the intro section should be as follows:
 
 ```
-test_n: <name of test>
-n_cycles: <number of cycles the tecan plate reader run for>
-n_dilutions: <number of dilutions of the antibiotic tested in the plate>
-n_strains: <number of strains in the test>
-n_replicates: <number of replicates in the test>
-antibiotic: <name of antibiotic in test>
-concentrations: <concentrations in test separated by commas>
+test_n: <string without special characters: name of test>
+n_cycles: <int: number of cycles the tecan plate reader run for>
+n_dilutions: <int: number of dilutions of the antibiotic tested in the plate>
+n_strains: <int: number of strains in the test>
+n_replicates: <int: number of replicates in the test>
+antibiotic: <string without special characters: name of antibiotic in test>
+concentrations: <comma separated floats: concentrations in test>
 ```
 
 The structure of the strain blocks should be as follows:
 
 ```
-strain: <name of strain>
-color: <color map to use in plots>
-replicate_n: <list of wells where replicate n is on the plate separated by commas>
+strain: <string with no speacial characters: name of strain>
+color: <string: color map to use in plots>
+replicate_n: <comma separated subset of well indexes according to plate_data.csv: list of wells where replicate n is on the plate>
 .
 . (there should be one line for each replicate)
 .
-control+: <list of wells where the positive control was performed separated by commas>
+control+: <comma separated subset of well indexes according to plate_data.csv: list of wells where the positive control was performed separated by commas>
 ```
 
 The structure of the negative control blocks should be as follows:
 
 ```
-control-: <number of negative controls performed>
-<name of negative control>: <wells in which the negative controls were performed>
+control-: <int: number of negative controls performed>
+<string: name of negative control>: <comma separated subset of well indexes according to plate_data.csv: wells in which the negative controls were performed>
 . (there should be a line for each negative control performed in accordance with the number provided in the first line of the block)
 .
 ```
@@ -110,7 +110,7 @@ Input: path to a plate_setup.txt file with information detailing how the assay w
 
 Output: generates a nested dictionary ("plate without data") which stores the information from the experiment in a structured way as displayed below:
 
-<img width="1920" height="1080" alt="Dictionary (1)" src="https://github.com/user-attachments/assets/a796445f-c6eb-4c6d-8c1c-39cb791b7fa0" />
+<img width="960" height="540" alt="Dictionary (1)" src="https://github.com/user-attachments/assets/a796445f-c6eb-4c6d-8c1c-39cb791b7fa0" />
 
 Where the tests, other controls, strains and replicates dictionaries can contain multiple dictionaries with the structure of test 1, control 1, strain 1 and replicate 1 respectively depending on the path_to_plate_setup provided.
 
@@ -120,7 +120,7 @@ Input: A "plate without data" dictionary and the path to the output of Tecan i-c
 
 Output: A nested dictionary ("plate with data") with the following structure
 
-<img width="1920" height="1080" alt="Dictionary" src="https://github.com/user-attachments/assets/0e15d5a7-5113-4f6e-b550-2ad0be9729a7" />
+<img width="960" height="540" alt="Dictionary" src="https://github.com/user-attachments/assets/0e15d5a7-5113-4f6e-b550-2ad0be9729a7" />
 
 Where the tests, other controls, strains and replicates dictionaries can contain multiple dictionaries with the structure of test 1, control 1, strain 1 and replicate 1 respectively depending on the path_to_plate_setup provided.
 
@@ -132,7 +132,7 @@ Output: nested dictionary of paths ("save directories") where the plots and exce
 
 Creates the directories where the output plots and workbooks will be stored
 
-<img width="1920" height="1080" alt="Dictionary" src="https://github.com/user-attachments/assets/4838b85d-87c4-4ca1-a158-8ab43cbaadd6" />
+<img width="960" height="540" alt="Dictionary" src="https://github.com/user-attachments/assets/4838b85d-87c4-4ca1-a158-8ab43cbaadd6" />
 
 
 
@@ -169,7 +169,7 @@ Input: A "plate with data" dictionary and min_bic, min_OD_change and slope-thres
 
 Output: A nested dictionary ("Params") containing the growth parameters for all testing wells organized as follows
 
-<img width="1920" height="1080" alt="Strain 1" src="https://github.com/user-attachments/assets/47087084-ec24-480b-b98b-23ea1c79eb94" />
+<img width="960" height="540" alt="Strain 1" src="https://github.com/user-attachments/assets/47087084-ec24-480b-b98b-23ea1c79eb94" />
 
 
 Where Parameters, strains, dilutions and replicates can have various, tests, strasins, dilutions and replicates nested dictionaries respectively.
