@@ -198,4 +198,6 @@ For each test strain and dilution combination, the data in the "plate with data"
 
 ## Limitations 
 
-The current files are not able to process a plate where the concentrations of two antibiotics change in tandem in the same test.
+- The current program is not able to process a plate where the concentrations of two antibiotics change in tandem in the same test.
+- min_bic's default value is specific to the conditions of the experiment the code was originally developed for
+- lag_phase_finder() is used to compute lag phase duration when no model fit can surpass the min_bic threshold, it computes the parameter by returning the first cycle where OD increases with a ratio above slope_threshold for five consecutive turns. This approach is quite limited and should not be viewed as absolute.
