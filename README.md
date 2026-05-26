@@ -110,7 +110,7 @@ Input: path to a plate_setup.txt file with information detailing how the assay w
 
 Output: generates a nested dictionary ("plate without data") which stores the information from the experiment in a structured way as displayed below:
 
-<img width="960" height="540" alt="Dictionary (1)" src="https://github.com/user-attachments/assets/a796445f-c6eb-4c6d-8c1c-39cb791b7fa0" />
+<img width="700" height="394" alt="Dictionary (1)" src="https://github.com/user-attachments/assets/a796445f-c6eb-4c6d-8c1c-39cb791b7fa0" />
 
 Where the tests, other controls, strains and replicates dictionaries can contain multiple dictionaries with the structure of test 1, control 1, strain 1 and replicate 1 respectively depending on the path_to_plate_setup provided.
 
@@ -120,7 +120,7 @@ Input: A "plate without data" dictionary and the path to the output of Tecan i-c
 
 Output: A nested dictionary ("plate with data") with the following structure
 
-<img width="960" height="540" alt="Dictionary" src="https://github.com/user-attachments/assets/0e15d5a7-5113-4f6e-b550-2ad0be9729a7" />
+<img width="700" height="394" alt="Dictionary" src="https://github.com/user-attachments/assets/0e15d5a7-5113-4f6e-b550-2ad0be9729a7" />
 
 Where the tests, other controls, strains and replicates dictionaries can contain multiple dictionaries with the structure of test 1, control 1, strain 1 and replicate 1 respectively depending on the path_to_plate_setup provided.
 
@@ -132,7 +132,7 @@ Output: nested dictionary of paths ("save directories") where the plots and exce
 
 Creates the directories where the output plots and workbooks will be stored
 
-<img width="960" height="540" alt="Dictionary" src="https://github.com/user-attachments/assets/4838b85d-87c4-4ca1-a158-8ab43cbaadd6" />
+<img width="700" height="394" alt="Dictionary" src="https://github.com/user-attachments/assets/4838b85d-87c4-4ca1-a158-8ab43cbaadd6" />
 
 
 
@@ -169,7 +169,7 @@ Input: A "plate with data" dictionary and min_bic, min_OD_change and slope-thres
 
 Output: A nested dictionary ("Params") containing the growth parameters for all testing wells organized as follows
 
-<img width="960" height="540" alt="Strain 1" src="https://github.com/user-attachments/assets/47087084-ec24-480b-b98b-23ea1c79eb94" />
+<img width="700" height="394" alt="Strain 1" src="https://github.com/user-attachments/assets/47087084-ec24-480b-b98b-23ea1c79eb94" />
 
 
 Where Parameters, strains, dilutions and replicates can have various, tests, strasins, dilutions and replicates nested dictionaries respectively.
